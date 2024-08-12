@@ -3,6 +3,9 @@ import React, { Suspense, useRef, useMemo } from 'react'
 import { Canvas, extend, useThree, useLoader, useFrame } from '@react-three/fiber'
 import { OrbitControls, Sky } from '@react-three/drei'
 import { Water } from 'three-stdlib'
+import { Model2 } from './islands/Island2'
+import { Model1 } from './islands/Island1'
+import { Model3 } from './islands/Island3'
 
 extend({ Water })
 
@@ -51,10 +54,12 @@ export default function App() {
       <pointLight position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
-        <Box />
+        {/* <Model1 scale={10} /> */}
+        {/* <Model2 position={[0,-55,0]}/> */}
+        <Model3 scale={10}  position={[0,-0.4,0]} />
       </Suspense>
       <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} />
-      <OrbitControls />
+      <OrbitControls maxAzimuthAngle={Math.PI} maxPolarAngle={Math.PI} />
     </Canvas>
   )
 }
