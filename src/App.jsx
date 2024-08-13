@@ -24,7 +24,7 @@ function Ocean() {
       sunColor: 0xffffff,
       waterColor: 0x001e0f,
       distortionScale: 3.7,
-      fog: false,
+      fog: true,
       format: gl.encoding
     }),
     [waterNormals]
@@ -33,19 +33,6 @@ function Ocean() {
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />
 }
 
-function Box() {
-  const ref = useRef()
-  useFrame((state, delta) => {
-    ref.current.position.y = 10 + Math.sin(state.clock.elapsedTime) * 20
-    ref.current.rotation.x = ref.current.rotation.y = ref.current.rotation.z += delta
-  })
-  return (
-    <mesh ref={ref} scale={20}>
-      <boxGeometry />
-      <meshStandardMaterial />
-    </mesh>
-  )
-}
 
 export default function App() {
   return (
@@ -55,8 +42,8 @@ export default function App() {
       <Suspense fallback={null}>
         <Ocean />
         {/* <Model1 scale={10} /> */}
-        {/* <Model2 position={[0,-55,0]}/> */}
-        <Model3 scale={10}  position={[0,-0.4,0]} />
+        <Model2 position={[0,-55,0]}/>
+        {/* <Model3 scale={10}  position={[0,-0.4,0]} /> */}
       </Suspense>
       <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} />
       <OrbitControls maxAzimuthAngle={Math.PI} maxPolarAngle={Math.PI} />
